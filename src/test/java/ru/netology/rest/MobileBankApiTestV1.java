@@ -22,7 +22,7 @@ class MobileBankApiTestV1 {
           .get("/demo/accounts")
       // Проверки
       .then()
-          .statusCode(200);
+          .statusCode(300);
     }
 
     @Test
@@ -40,7 +40,7 @@ class MobileBankApiTestV1 {
     }
 
     @Test
-    void shouldReturnContentTypeJSONTest3() {
+    void shouldReturnContentTypeJSON3Test() {
         // Given - When - Then
         // Предусловия
         given()
@@ -50,11 +50,12 @@ class MobileBankApiTestV1 {
                 .get("/demo/accounts")
                 // Проверки
                 .then()
-                .contentType(ContentType.JSON);
+                .contentType(ContentType.XML);
     }
 
+    // Чисто на всякий случай на память
     // .header("Content-Type", "application/json; charset=UTF-8")
-    // специализированные проверки - лучше   .contentType(ContentType.XML)
+    // специализированные проверки - лучше   .contentType(ContentType.JSON)
 
     @Test
     void shouldReturnNumberOfObjects4Test() {
@@ -67,7 +68,7 @@ class MobileBankApiTestV1 {
                 .get("/demo/accounts")
                 // Проверки
                 .then()
-                .body("",hasSize(3));
+                .body("",hasSize(4));
     }
 
     @Test
@@ -81,7 +82,7 @@ class MobileBankApiTestV1 {
                 .get("/demo/accounts")
                 // Проверки
                 .then()
-                .body("[0].currency",equalTo("RUB"));
+                .body("[0].currency",equalTo("RUR"));
     }
 
     @Test
@@ -95,7 +96,7 @@ class MobileBankApiTestV1 {
                 .get("/demo/accounts")
                 // Проверки
                 .then()
-                .body("every{ it.balance >= 0 }", Matchers.is(true));
+                .body("every{ it.balance >= 0 }", Matchers.is(false));
     }
 
 }
