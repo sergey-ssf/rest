@@ -22,7 +22,7 @@ class MobileBankApiTestV1 {
           .get("/demo/accounts")
       // Проверки
       .then()
-          .statusCode(300);
+          .statusCode(200);
     }
 
     @Test
@@ -50,7 +50,7 @@ class MobileBankApiTestV1 {
                 .get("/demo/accounts")
                 // Проверки
                 .then()
-                .contentType(ContentType.XML);
+                .contentType(ContentType.JSON);
     }
 
     // .header("Content-Type", "application/json; charset=UTF-8")
@@ -67,7 +67,7 @@ class MobileBankApiTestV1 {
                 .get("/demo/accounts")
                 // Проверки
                 .then()
-                .body("",hasSize(4));
+                .body("",hasSize(3));
     }
 
     @Test
@@ -81,7 +81,7 @@ class MobileBankApiTestV1 {
                 .get("/demo/accounts")
                 // Проверки
                 .then()
-                .body("[0].currency",equalTo("USD"));
+                .body("[0].currency",equalTo("RUB"));
     }
 
     @Test
@@ -95,7 +95,7 @@ class MobileBankApiTestV1 {
                 .get("/demo/accounts")
                 // Проверки
                 .then()
-                .body("every{ it.balance >= 0 }", Matchers.is(false));
+                .body("every{ it.balance >= 0 }", Matchers.is(true));
     }
 
 }
