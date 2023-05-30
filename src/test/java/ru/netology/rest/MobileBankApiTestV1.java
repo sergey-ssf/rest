@@ -1,5 +1,6 @@
 package ru.netology.rest;
 
+import io.restassured.http.ContentType;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,7 @@ class MobileBankApiTestV1 {
           .get("/demo/accounts")
       // Проверки
       .then()
-          .statusCode(200);
+          .statusCode(300);
     }
 
     @Test
@@ -49,11 +50,11 @@ class MobileBankApiTestV1 {
                 .get("/demo/accounts")
                 // Проверки
                 .then()
-                .contentType(io.restassured.http.ContentType.JSON);
+                .contentType(ContentType.XML);
     }
 
     // .header("Content-Type", "application/json; charset=UTF-8")
-    // специализированные проверки - лучше   .contentType(ContentType.JSON)
+    // специализированные проверки - лучше   .contentType(ContentType.XML)
 
     @Test
     void shouldReturnNumberOfObjects4Test() {
@@ -66,7 +67,7 @@ class MobileBankApiTestV1 {
                 .get("/demo/accounts")
                 // Проверки
                 .then()
-                .body("",hasSize(3));
+                .body("",hasSize(4));
     }
 
     @Test
@@ -80,7 +81,7 @@ class MobileBankApiTestV1 {
                 .get("/demo/accounts")
                 // Проверки
                 .then()
-                .body("[0].currency",equalTo("RUB"));
+                .body("[0].currency",equalTo("USD"));
     }
 
     @Test
@@ -94,7 +95,7 @@ class MobileBankApiTestV1 {
                 .get("/demo/accounts")
                 // Проверки
                 .then()
-                .body("every{ it.balance >= 0 }", Matchers.is(true));
+                .body("every{ it.balance >= 0 }", Matchers.is(false));
     }
 
 }
