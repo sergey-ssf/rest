@@ -14,7 +14,7 @@
     ],
     "properties": {
       "id": {
-        "type": "boolean"
+        "type": "integer"
       },
       "name": {
         "type": "string",
@@ -30,7 +30,7 @@
       },
       "currency": {
         "type": "string",
-        "enum": ["USD", "RUB"]
+        "enum": ["USD", "RUR"]
       }
     }
   }
